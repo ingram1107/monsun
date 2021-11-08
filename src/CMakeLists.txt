@@ -1,5 +1,5 @@
-option(ENABLE_TUI "Compile Monsun into Terminal User Interface" OFF)
-option(ENABLE_GUI "compiler Monsun into Graphical User Interface" ON)
+option(ENABLE_TUI "Compile Monsun into Terminal User Interface" ON)
+option(ENABLE_GUI "compiler Monsun into Graphical User Interface" OFF)
 
 if(ENABLE_TUI)
   message("Compile Monsun with TUI")

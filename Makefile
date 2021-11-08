@@ -1,8 +1,6 @@
 BUILD_DIR=build
 CMAKE=cmake
-CMAKE_FLAGS=-DBUILD_DOCS=ON
-CMAKE_FLAGS+=-DENABLE_TUI=ON
-CMAKE_FLAGS+=-S . -B $(BUILD_DIR)
+CMAKE_FLAGS=-S . -B $(BUILD_DIR)
 EXE=./monsun
 
 ifneq ("$(wildcard compile_commands.json)","")
