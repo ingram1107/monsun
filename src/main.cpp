@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <monsun.h>
 
 #ifdef ENABLE_TUI
@@ -10,7 +11,24 @@ using namespace std;
 
 int main()
 {
+  std::ifstream finCustomer{"customer.dat", std::ios::in};
+  Customer tempCus;
+
+  if (finCustomer.peek() == std::ifstream::traits_type::eof()) {
+  } else {
 #ifdef ENABLE_TUI
+    while (finCustomer >> tempCus) {
+      int size = 0;
+      lin.insert(tempCus, ++size);
+
+      if (finCustomer.eof()) {
+        break;
+      }
+    }
+  }
+
+  finCustomer.close();
+
   int choice,rchoice=0;
   while(rchoice==0)
   {
@@ -83,6 +101,22 @@ menu:
         sortInfo();
         break;
       case 7:
+        {
+          std::ofstream foutCustomer{"customer.dat", std::ios::trunc};
+
+          if (!foutCustomer) {
+            cerr << "customer.dat: File does not exists" << endl;
+            exit(1);
+          }
+
+          while (!lin.isEmpty()) {
+            tempCus = lin.retrieve(1);
+            foutCustomer << tempCus << '\n';
+            lin.remove(1);
+          }
+
+          foutCustomer.close();
+        }
         exit(0);
         break;
       default:
