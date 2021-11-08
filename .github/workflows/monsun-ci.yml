@@ -1,0 +1,23 @@
+name: Monsun CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: make
+    - name: install
+      run: make install
+    - name: uninstall
+      run: make uninstall
+    - name: unit tests
+      run: make gtest
