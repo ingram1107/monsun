@@ -35,7 +35,7 @@ pack:
 # 	rm /usr/local/bin/olas
 
 gtest:
-	cd $(BUILD_DIR) && ctest
+	cd $(BUILD_DIR) && ctest $(ARGS)
 
 run:
 	cd $(BUILD_DIR) && $(EXE)
