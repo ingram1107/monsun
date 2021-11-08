@@ -18,7 +18,7 @@ Follow the CMake GUI instructions
 
 ## Linux and MacOS
 ```sh
-make & sudo make install
+make && sudo make install
 ```
 
 # Uninstall
