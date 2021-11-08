@@ -77,27 +77,4 @@ TEST(CustomerTest, LessPriority)
   EXPECT_TRUE(c1 < c2);
 }
 
-TEST(CustomerTest, FileIO)
-{
-  std::ofstream fout{"test/customer.dat", std::ios::out};
-  std::ifstream fin{"test/customer.dat", std::ios::in};
-  Customer c1{123456789,"Siah",'m',20,"0176226799",4500.50,"25FEB2021","1MAY2021","MR.LEE","PARIS"};
-  Customer c2{};
-
-  fout << c1;
-  fin >> c2;
-
-  fout.close();
-  fin.close();
-
-  EXPECT_EQ(123456789, c2.getIc());
-  EXPECT_EQ("Siah", c2.getName());
-  EXPECT_EQ('m', c2.getGender());
-  EXPECT_EQ(20, c2.getAge());
-  EXPECT_EQ("0176226799", c2.getContactNum());
-  EXPECT_EQ(4500.50, c2.getPayment());
-  EXPECT_EQ("25FEB2021", c2.getPaymentDate());
-  EXPECT_EQ("1MAY2021", c2.getDepartureDate());
-  EXPECT_EQ("MR.LEE", c2.getAgency());
-  EXPECT_EQ("PARIS", c2.getDest());
-}
+// TODO: Integration test for File I/O
