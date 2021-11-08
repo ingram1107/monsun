@@ -1,0 +1,10 @@
+option(ENABLE_TUI "Compile Monsun into Terminal User Interface" OFF)
+option(ENABLE_GUI "compiler Monsun into Graphical User Interface" ON)
+
+if(ENABLE_TUI)
+  message("Compile Monsun with TUI")
+elseif(ENABLE_GUI)
+  message("Compile Monsun with GUI")
+else()
+  message("Compile Monsun wiht no interface")
+endif()

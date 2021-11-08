@@ -1,0 +1,7 @@
+#pragma once
+
+#define MONSON_MAJOR_VERSION @monson_MAJOR_VERSION@
+#define MONSON_MINOR_VERSION @monson_MINOR_VERSION@
+
+#cmakedefine ENABLE_TUI
+#cmakedefine ENABLE_GUI
