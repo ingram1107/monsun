@@ -12,6 +12,6 @@ target_include_directories(linkedlist
 )
 
 install(TARGETS customer DESTINATION lib)
-install(FILES Customer.hpp DESTINATION include)
+install(FILES Customer.cpp DESTINATION include)
 install(TARGETS linkedlist DESTINATION lib)
-install(FILES LinkedList.hpp DESTINATION include)
+install(FILES LinkedList.cpp DESTINATION include)

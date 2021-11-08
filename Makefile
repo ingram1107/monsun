@@ -25,14 +25,13 @@ install:
 pack:
 	cd $(BUILD_DIR) && cpack
 
-# uninstall:
-# 	rm /usr/local/lib/libadder.a
-# 	rm /usr/local/include/adder.h
-# 	rm /usr/local/lib/libglfw3.a
-# 	rm -rf /usr/local/include/GLFW
-# 	rm -rf /usr/local/cmake/glfw3
-# 	rm /usr/local/lib/pkgconfig/glfw3.pc
-# 	rm /usr/local/bin/olas
+uninstall:
+	rm /usr/local/lib/libcustomer.a
+	rm /usr/local/include/Customer.cpp
+	rm /usr/local/lib/liblinkedlist.a
+	rm /usr/local/include/LinkedList.cpp
+	rm /usr/local/bin/monsun
+	rm /usr/local/include/monsun.h
 
 gtest:
 	cd $(BUILD_DIR) && ctest $(ARGS)

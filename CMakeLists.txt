@@ -55,7 +55,7 @@ target_link_libraries(${PROJECT_NAME} customer linkedlist)
 
 # cmake --install
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-install(FILES "${PROJECT_BINARY_DIR}/olasconf.h" DESTINATION include)
+install(FILES "${PROJECT_BINARY_DIR}/monsun.h" DESTINATION include)
 
 # cpack
 include(InstallRequiredSystemLibraries)
