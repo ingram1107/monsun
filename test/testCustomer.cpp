@@ -1,5 +1,5 @@
 #include <fstream>
-#include <Customer.hpp>
+#include <Customer.cpp>
 #include <gtest/gtest.h>
 
 TEST(CustomerTest, Getters)

@@ -1,5 +1,5 @@
-add_library(customer Customer.cpp Customer.hpp)
-add_library(linkedlist LinkedList.cpp LinkedList.hpp)
+add_library(customer Customer.cpp)
+add_library(linkedlist LinkedList.cpp)
 
 target_include_directories(customer
   PUBLIC

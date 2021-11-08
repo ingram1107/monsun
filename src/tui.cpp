@@ -1,5 +1,5 @@
-#include <Customer.hpp>
-#include <LinkedList.hpp>
+#include <Customer.cpp>
+#include <LinkedList.cpp>
 #include <iostream>
 #include <string>
 
