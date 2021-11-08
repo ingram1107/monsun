@@ -187,10 +187,10 @@ std::istream& operator>>(std::istream& in, Customer& rhs)
   in >> std::ws;
 
   // convert to suitable types
-  // rhs.ic = std::stol(ic_s);
+  rhs.ic = std::stol(ic_s);
   rhs.gender = gender_s[0];
-  // rhs.age = std::stoi(age_s);
-  // rhs.payment = std::stod(payment_s);
+  rhs.age = std::stoi(age_s);
+  rhs.payment = std::stod(payment_s);
 
   return in;
 }
