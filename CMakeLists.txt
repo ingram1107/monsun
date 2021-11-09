@@ -11,6 +11,8 @@ find_package(Doxygen)
 find_package(GTest)
 option(BUILD_DOCS "Create and install documentation (requires doxygen)" ${DOXYGEN_FOUND})
 option(BUILD_TESTS "Build tests (requires Google Test)" ${GTest_FOUND})
+option(ENABLE_TUI "Compile Monsun into Terminal User Interface" ON)
+option(ENABLE_GUI "compiler Monsun into Graphical User Interface" OFF)
 
 if(BUILD_DOCS)
   if(NOT DOXYGEN_FOUND)
@@ -67,6 +69,14 @@ target_link_directories(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} customer linkedlist)
+
+if(ENABLE_TUI)
+  message("Compile Monsun with TUI")
+elseif(ENABLE_GUI)
+  message("Compile Monsun with GUI")
+else()
+  message("Compile Monsun wiht no interface")
+endif()
 
 # cmake --install
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
