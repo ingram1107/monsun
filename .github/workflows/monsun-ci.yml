@@ -19,5 +19,11 @@ jobs:
       run: sudo make install
     - name: uninstall
       run: sudo make uninstall
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
     - name: unit tests
-      run: make gtest
+      run: make ARGS1=-DBUILD_TESTS=ON && make gtest

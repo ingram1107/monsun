@@ -10,7 +10,7 @@ else
 endif
 
 build: CMakeLists.txt monsun.h.in lib/* src/* doc/* test/*
-	$(CMAKE) $(CMAKE_FLAGS)
+	$(CMAKE) $(CMAKE_FLAGS) $(ARGS1)
 ifeq ($(JSON_EXISTS),0)
 	ln -s $(BUILD_DIR)/compile_commands.json compile_commands.json
 endif
@@ -32,7 +32,7 @@ uninstall:
 	rm /usr/local/include/monsun.h
 
 gtest:
-	cd $(BUILD_DIR) && ctest $(ARGS)
+	cd $(BUILD_DIR) && ctest $(ARGS2)
 
 doc: build/* doc/docgen
 	cd $(BUILD_DIR) && make doc
