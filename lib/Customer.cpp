@@ -4,6 +4,7 @@
  *
  * @class Customer Customer.cpp "Customer.cpp"
  */
+#include <cstdio>
 #include <iostream>
 #include <limits>
 #include <string>
@@ -286,13 +287,37 @@ void Customer::edit()
     } else break;
   }
 
-  std::cout << "Payment Date         : ";
-  std::cin >> paymentDate;
+  while (true) {
+    unsigned int date, month, year;
+
+    std::cout << "Payment Date         : ";
+    if (std::scanf("%2d/%2d/%4d", &date, &month, &year) < 3) {
+      std::cerr << "Date should be in format dd/mm/yyyy" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else {
+      paymentDate = std::to_string(date) + '/' + std::to_string(month) + '/' + std::to_string(year);
+      break;
+    }
+  }
+
   std::cin.ignore();
   std::cout << "Destination          : ";
   std::getline(std::cin, dest);
-  std::cout << "Departure Date       : ";
-  std::cin >> departureDate;
+
+  while (true) {
+    unsigned int date, month, year;
+
+    std::cout << "Departure Date       : ";
+    if (std::scanf("%2d/%2d/%4d", &date, &month, &year) < 3) {
+      std::cerr << "Date should be in format dd/mm/yyyy" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else {
+      departureDate = std::to_string(date) + '/' + std::to_string(month) + '/' + std::to_string(year);
+      break;
+    }
+  }
 
   setName(name);
   setIc(ic);
