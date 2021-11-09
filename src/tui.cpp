@@ -231,13 +231,9 @@ void displayInfo()
 
 void addInfo()
 {
-  long ic, age;
-  std::string name, contactNum, paymentDate,  departureDate, agency,  dest;
-  char gender,input;
-  double payment;
+  Customer newCus;
+  char input;
   bool duplicate = false;
-  num++;
-  int temp_num=num;
   cout<<"====================================================================================\n";
   cout<<"|                                                                                  |\n";
   cout<<"|                   ------Traveling Agency Management System------                 |\n";
@@ -246,52 +242,25 @@ void addInfo()
   cout<<"|                                                                                  |\n";
   cout<<"|                                                                                  |\n";
   cout<<"====================================================================================\n";
-  cout<<"Enter Customer IC: ";
-  cin>>ic;
-  cin.ignore();
-  cout<<"Enter Customer Name: ";
-  getline(cin,name);
-  cout<<"Enter Gender: ";
-  cin>>gender;
-  cout<<"Enter Age:";
-  cin>>age;
-  cout<<"Enter Contact Number: ";
-  cin>>contactNum;
-  cout<<"Payment: ";
-  cin>>payment;
-  cout<<"Enter Payment Date:";
-  cin>>paymentDate;
-  cout<<"Enter Departure Date: ";
-  cin>>departureDate;
-  cin.ignore();
-  cout<<"Enter Agency: ";
-  getline(cin,agency);
+  newCus.edit();
 
-  cout<<"Enter Destination: ";
-  getline(cin,dest);
-  while(temp_num>0)
+  for (int i = lin.size; i > 0; i--)
   {
-    Customer temp = lin.retrieve(temp_num-1);
-    if(temp.getIc()==ic)
+    Customer temp = lin.retrieve(i);
+
+    if(temp.getIc()==newCus.getIc())
     {
       duplicate=true;
     }
-    temp_num--;
-
   }
+
   if(duplicate == true)
   {
     cout<<"\t\nThis IC number already existed\n";
-    lin.remove(temp_num);
-    num--;
-
-
   }
   else
   {
-    Customer cust(ic,name,gender,age,contactNum,payment,paymentDate,departureDate,agency,dest);
-
-    if(lin.insert(cust,num))
+    if(lin.insert(newCus, lin.size + 1))
     {
       std::cout << "\n\tInformation has been added......\n";
     }
