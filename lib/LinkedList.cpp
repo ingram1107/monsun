@@ -72,7 +72,6 @@ template <class T>
 class LinkedList {
   private:
     /// Size of the LinkedList
-    size_t size = 0;
     /// Header of the LinkedList
     std::shared_ptr<Node<T>> head = nullptr;
     /**
@@ -90,6 +89,8 @@ class LinkedList {
     void descendingOrderSort();
 
   public:
+    size_t size = 0;
+
     LinkedList() = default;
     /**
      * Copy the linked list structure to this LinkedList

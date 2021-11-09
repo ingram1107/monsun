@@ -234,8 +234,9 @@ void Customer::edit()
   std::cin >> payment;
   std::cout << "Payment Date         : ";
   std::cin >> paymentDate;
+  std::cin.ignore();
   std::cout << "Destination          : ";
-  std::cin >> dest;
+  std::getline(std::cin, dest);
   std::cout << "Departure Date       : ";
   std::cin >> departureDate;
 
