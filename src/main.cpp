@@ -11,12 +11,12 @@ using namespace std;
 
 int main()
 {
+#ifdef ENABLE_TUI
   std::ifstream finCustomer{"customer.dat", std::ios::in};
   Customer tempCus;
 
   if (finCustomer.peek() == std::ifstream::traits_type::eof()) {
   } else {
-#ifdef ENABLE_TUI
     while (finCustomer >> tempCus) {
       int size = 0;
       lin.insert(tempCus, ++size);
