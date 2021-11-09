@@ -16,8 +16,8 @@ jobs:
     - name: build
       run: make
     - name: install
-      run: make install
+      run: sudo make install
     - name: uninstall
-      run: make uninstall
+      run: sudo make uninstall
     - name: unit tests
       run: make gtest
