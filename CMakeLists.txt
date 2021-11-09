@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "-Werror")
 
 find_package(Doxygen)
 option(BUILD_DOCS "Create and install documentation (requires doxygen)" ${DOXYGEN_FOUND})
+option(BUILD_TESTS "Build tests (requires Google Test)" ${GTest_FOUND})
 
 if(BUILD_DOCS)
   if(NOT DOXYGEN_FOUND)
@@ -33,8 +34,14 @@ configure_file(monsun.h.in monsun.h)
 add_executable(${PROJECT_NAME} src/main.cpp)
 add_subdirectory(lib)
 
-enable_testing()
-add_subdirectory(test)
+if(BUILD_TESTS)
+  if(NOT GTest_FOUND)
+    message(FATAL_ERROR "Google Test is needed to build tests")
+  endif()
+
+  enable_testing()
+  add_subdirectory(test)
+endif()
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC
