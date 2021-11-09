@@ -8,6 +8,7 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <regex>
 
 /**
  * Simple storage for customer information
@@ -263,8 +264,18 @@ void Customer::edit()
     } else break;
   }
 
-  std::cout << "Contact Number       : ";
-  std::cin >> contactNum;
+  while (true) {
+    std::regex pattern1{"01[0,2-9]-[0-9]{7}"};
+    std::regex pattern2{"011-[0-9]{8}"};
+    std::smatch match;
+
+    std::cout << "Contact Number       : ";
+    std::cin >> contactNum;
+
+    if (!(std::regex_match(contactNum, match, pattern1)) && !(std::regex_match(contactNum, match, pattern2))) {
+      std::cerr << "Contact number should be in the format of 01X-XXXXXXX" << std::endl;
+    } else break;
+  }
 
   std::cin.ignore();
   while (true) {
