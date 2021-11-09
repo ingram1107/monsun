@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-Werror")
 
 find_package(Doxygen)
+find_package(GTest)
 option(BUILD_DOCS "Create and install documentation (requires doxygen)" ${DOXYGEN_FOUND})
 option(BUILD_TESTS "Build tests (requires Google Test)" ${GTest_FOUND})
 
