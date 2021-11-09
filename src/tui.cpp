@@ -7,12 +7,10 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-static int num=0;//to keep track what is the size of the linked list
 LinkedList<Customer> lin{};//declare a linked list
 
 void sortInfo()
 {
-  int temp_num=num;
   int choice;
   bool isAscending;
 
@@ -58,7 +56,6 @@ sortMenu:
 void deleteInfo()
 {
   long ic;
-  int temp_num=num;//temp_num is used locally, just in case not interrupting the correct sequence of num
   cout<<"====================================================================================\n";
   cout<<"|                                                                                  |\n";
   cout<<"|                   ------Traveling Agency Management System------                 |\n";
@@ -70,29 +67,25 @@ void deleteInfo()
   cout<<"Enter Customer IC: ";
   cin>>ic;
   cout<<"*************************************************************************************\n";
-  while(temp_num>0)
+  for (int i = lin.size; i > 0; i--)
   {
-    Customer temp = lin.retrieve(temp_num);
+    Customer temp = lin.retrieve(i);
     if(temp.getIc()==ic)
     {
 
       cout<<"\tInformation has been deleted......\n";
-      lin.remove(temp_num);
-      num--;
+      lin.remove(i);
       break;
+    } else if (i - 1 == 0) {
+      cout<<"\n\tThe person is not found\n\n";
+      cout<<"*************************************************************************************\n";
     }
-    temp_num--;
-  }
-  if(temp_num==0)
-  {
-    cout<<"\n\tThe person is not found\n\n";
-    cout<<"*************************************************************************************\n";
   }
 }
+
 void searchInfo()
 {
   long ic;
-  int temp_num=num;
   cout<<"====================================================================================\n";
   cout<<"|                                                                                  |\n";
   cout<<"|                   ------Traveling Agency Management System------                 |\n";
@@ -104,9 +97,9 @@ void searchInfo()
   cout<<"Enter Customer IC: ";
   cin>>ic;
   cout<<"*************************************************************************************\n";
-  while(temp_num>0)
+  for (int i = lin.size; i > 0; i--)
   {
-    Customer temp = lin.retrieve(temp_num);
+    Customer temp = lin.retrieve(i);
     if(temp.getIc()==ic)
     {
 
@@ -115,20 +108,17 @@ void searchInfo()
       cout<<"\n";
       cout<<"*************************************************************************************\n";
       break;
+    } else if (i - 1 == 0) {
+      cout<<"\n\tThe person is not found\n\n";
+      cout<<"*************************************************************************************\n";
     }
-    temp_num--;
   }
-  if(temp_num==0)
-  {
-    cout<<"\n\tThe person is not found\n\n";
-    cout<<"*************************************************************************************\n";
-  }
-
 }
+
 bool checkDuplicate(int index)
 {
   Customer temp=lin.retrieve(index);
-  for(int i=1;i<=num;i++)
+  for(int i=1;i>=lin.size;i++)
   {
     Customer test = lin.retrieve(i);
     if(i==index)
@@ -143,11 +133,11 @@ bool checkDuplicate(int index)
   }
   return true;
 }
+
 void editInfo()
 {
   bool available=false;
   long ic;
-  int temp_num=num;
   Customer pass;
   cout<<"====================================================================================\n";
   cout<<"|                                                                                  |\n";
@@ -160,16 +150,16 @@ void editInfo()
   cout<<"Enter customer IC\n";
   cin>>ic;
   cout<<"*************************************************************************************\n";
-  while(temp_num>0)
+  for (int i = lin.size; i > 0; i--)
   {
-    Customer temp = lin.retrieve(temp_num);
+    Customer temp = lin.retrieve(i);
     if(temp.getIc()==ic)
     {
       pass=temp;
       available=true;
       cout<<"Current Customer Information\n";
       temp.display();
-      lin.remove(temp_num);
+      lin.remove(i);
       cout<<"\n";
       cout<<"*************************************************************************************\n";
       cout<<"\n";
@@ -177,36 +167,32 @@ void editInfo()
       cout<<"Update Customer Information\n";
       cout<<"\n";
       temp.edit();
-      lin.insert(temp,temp_num);
+      lin.insert(temp,i);
       cout<<"*************************************************************************************\n";
 
+      if(checkDuplicate(i)==true && available==true)
+      {
+        cout<<"\tInformation has been updated......\n\n";
+      }
+      else if(checkDuplicate(i)==false && available==true)
+      {
+
+        lin.remove(i);
+        lin.insert(pass, i);
+        cout<<"\tFail to edit current information, Please try again\n";
+      }
       break;
     }
-    temp_num--;
+    else if(i - 1 == 0)
+    {
+      cout<<"\n\tThe person is not found\n\n";
+      cout<<"*************************************************************************************\n";
+    }
   }
-  if(temp_num==0)
-  {
-    cout<<"\n\tThe person is not found\n\n";
-    cout<<"*************************************************************************************\n";
-  }
-  if(checkDuplicate(temp_num)==true && available==true)
-  {
-
-    cout<<"\tInformation has been updated......\n\n";
-  }
-  else if(checkDuplicate(temp_num)==false && available==true)
-  {
-
-    lin.remove(temp_num);
-    lin.insert(pass,temp_num);
-    cout<<"\tFail to edit current information, Please try again\n";
-  }
-
-
 }
+
 void displayInfo()
 {
-  int temp_num=num;
   cout<<"====================================================================================\n";
   cout<<"|                                                                                  |\n";
   cout<<"|                   ------Traveling Agency Management System------                 |\n";
