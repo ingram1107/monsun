@@ -1,11 +1,13 @@
-set(This gtest)
+set(This unit_test)
 set(Tests
   test.cpp
   testCustomer.cpp
   testLinkedList.cpp
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lgtest")
+if(GTest_FOUND)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lgtest")
+endif()
 
 add_executable(${This}
   ${Tests})
