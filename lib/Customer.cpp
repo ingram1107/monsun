@@ -5,6 +5,7 @@
  * @class Customer Customer.cpp "Customer.cpp"
  */
 #include <iostream>
+#include <limits>
 #include <string>
 
 /**
@@ -217,21 +218,74 @@ void Customer::edit()
   char gender;
 
   std::cin.ignore();
-  std::cout << "Name                 : ";
-  std::getline(std::cin, name);
-  std::cout << "IC                   : ";
-  std::cin >> ic;
-  std::cout << "Gender               : ";
-  std::cin >> gender;
-  std::cout << "Age                  : ";
-  std::cin >> age;
+  while (true) {
+    std::cout << "Name                 : ";
+    std::getline(std::cin, name);
+
+    if (std::string::npos != name.find_first_of("0123456789")) {
+      std::cerr << "Real name should not contain numbers!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "IC                   : ";
+    std::cin >> ic;
+
+    if (!std::cin) {
+      std::cerr << "IC should be in digits!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "Gender               : ";
+    std::cin >> gender;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    if (isdigit(gender)) {
+      std::cerr << "Gender could not be a number!" << std::endl;
+    } else if (std::tolower(gender) != 'm' && std::tolower(gender) != 'f' && std::tolower(gender) != 'n') {
+      std::cerr << "Gender can only be either (M)ale, (F)emale or (N)on-binary!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "Age                  : ";
+    std::cin >> age;
+
+    if (!std::cin) {
+      std::cerr << "Age should be in number!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else break;
+  }
+
   std::cout << "Contact Number       : ";
   std::cin >> contactNum;
+
   std::cin.ignore();
-  std::cout << "Responsible Agency   : ";
-  std::getline(std::cin, agency);
-  std::cout << "Payment              : ";
-  std::cin >> payment;
+  while (true) {
+    std::cout << "Responsible Agency   : ";
+    std::getline(std::cin, agency);
+
+    if (std::string::npos != agency.find_first_of("0123456789")) {
+      std::cerr << "Agent's real name should not contain numbers!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "Payment              : ";
+    std::cin >> payment;
+
+    if (!std::cin) {
+      std::cerr << "Payment should be in digits!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else break;
+  }
+
   std::cout << "Payment Date         : ";
   std::cin >> paymentDate;
   std::cin.ignore();
