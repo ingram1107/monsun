@@ -34,6 +34,9 @@ uninstall:
 gtest:
 	cd $(BUILD_DIR) && ctest $(ARGS)
 
+doc: build/* doc/docgen
+	cd $(BUILD_DIR) && make doc
+
 run:
 	cd $(BUILD_DIR) && $(EXE)
 
