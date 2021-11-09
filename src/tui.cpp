@@ -216,14 +216,12 @@ void displayInfo()
   cout<<"|                                                                                  |\n";
   cout<<"====================================================================================\n";
 
-  while(temp_num>0)
+  for (int i = lin.size; i > 0; i--)
   {
-
-    Customer temp=lin.retrieve(temp_num);
+    Customer temp=lin.retrieve(i);
     temp.display();
     cout<<"\n";
     cout<<"*************************************************************************************\n";
-    temp_num--;
   }
 
 }
