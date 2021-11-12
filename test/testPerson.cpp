@@ -1,7 +1,8 @@
 #include <fstream>
-#include <Customer.cpp>
+#include <Agent.cpp>
 #include <gtest/gtest.h>
 
+/// Customer tests
 TEST(CustomerTest, Getters)
 {
   Customer c1{123456789,"Siah",'m',20,"0176226799",4500.50,"25FEB2021","1MAY2021","MR.LEE","PARIS"};
@@ -78,3 +79,80 @@ TEST(CustomerTest, LessPriority)
 }
 
 // TODO: Integration test for File I/O
+
+/// Agent tests
+TEST(AgentTest, Getters)
+{
+  LinkedList<Customer> customers{};
+
+  Agent a1{345678901,"Lim",'m',35, "011-28924892", customers, 1500};
+
+  EXPECT_EQ(345678901, a1.getIc());
+  EXPECT_EQ("Lim", a1.getName());
+  EXPECT_EQ('m', a1.getGender());
+  EXPECT_EQ(35, a1.getAge());
+  EXPECT_EQ("011-28924892", a1.getContactNum());
+  EXPECT_EQ(1500, a1.getSalary());
+}
+
+TEST(AgentTest, Setters)
+{
+  LinkedList<Customer> customers{};
+
+  Agent a1{};
+
+  a1.setIc(345678901);
+  a1.setName("Lim");
+  a1.setGender('m');
+  a1.setAge(35);
+  a1.setContactNum("011-28924892");
+  a1.setCustomers(customers);
+  a1.setSalary(1500);
+
+  EXPECT_EQ(345678901, a1.getIc());
+  EXPECT_EQ("Lim", a1.getName());
+  EXPECT_EQ('m', a1.getGender());
+  EXPECT_EQ(35, a1.getAge());
+  EXPECT_EQ("011-28924892", a1.getContactNum());
+  EXPECT_EQ(1500, a1.getSalary());
+}
+
+TEST(AgentTest, IsEqual)
+{
+  LinkedList<Customer> customers{};
+
+  Agent a1{345678901,"Lim",'m',35, "011-28924892", customers, 1500};
+  Agent a2{a1};
+
+  EXPECT_EQ(true, a1 == a2);
+}
+
+TEST(AgentTest, IsNotEqual)
+{
+  LinkedList<Customer> customers{};
+
+  Agent a1{345678901,"Lim",'m',35, "011-28924892", customers, 1500};
+  Agent a2{a1};
+
+  EXPECT_EQ(false, a1 != a2);
+}
+
+TEST(AgentTest, MorePriority)
+{
+  LinkedList<Customer> customers{};
+
+  Agent a1{345678901,"Lim",'m',35, "011-28924892", customers, 1500};
+  Agent a2{456789012, "Liang", 'f', 24, "019-7043892", customers, 1300};
+
+  EXPECT_TRUE(a2 > a1);
+}
+
+TEST(AgentTest, LessPriority)
+{
+  LinkedList<Customer> customers{};
+
+  Agent a1{345678901,"Lim",'m',35, "011-28924892", customers, 1500};
+  Agent a2{456789012, "Liang", 'f', 24, "019-7043892", customers, 1300};
+
+  EXPECT_TRUE(a1 < a2);
+}

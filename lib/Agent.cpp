@@ -12,6 +12,10 @@ class Agent : public Person {
           std::string contactNum, LinkedList<Customer> customers,
           double salary);
     ~Agent() = default;
+    bool operator==(const Agent& rhs);
+    bool operator!=(const Agent& rhs);
+    bool operator<(const Agent& rhs);
+    bool operator>(const Agent& rhs);
     friend std::ostream& operator<<(std::ostream& in, Customer const& rhs);
     friend std::istream& operator>>(std::istream& out, Customer& rhs);
 
@@ -31,6 +35,36 @@ Agent::Agent(long ic, std::string name, char gender, int age,
   : Person{ic, name, gender, age, contactNum},
     customers{customers},
     salary{salary}
+{
+
+}
+
+bool Agent::operator==(const Agent& rhs)
+{
+  return false;
+}
+
+bool Agent::operator!=(const Agent& rhs)
+{
+  return false;
+}
+
+bool Agent::operator<(const Agent& rhs)
+{
+  return false;
+}
+
+bool Agent::operator>(const Agent& rhs)
+{
+  return false;
+}
+
+void Agent::display() const
+{
+
+}
+
+void Agent::edit()
 {
 
 }
