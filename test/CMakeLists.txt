@@ -1,7 +1,7 @@
 set(This unit_test)
 set(Tests
   test.cpp
-  testCustomer.cpp
+  testPerson.cpp
   testLinkedList.cpp
 )
 

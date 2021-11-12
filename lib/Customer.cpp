@@ -4,6 +4,8 @@
  *
  * @class Customer Customer.cpp "Customer.cpp"
  */
+
+#include <Person.cpp>
 #include <cstdio>
 #include <iostream>
 #include <limits>
@@ -13,13 +15,10 @@
 /**
  * Simple storage for customer information
  */
-class Customer {
+class Customer : public Person {
   private:
-    long ic;
-    int age;
-    std::string name, contactNum, paymentDate, departureDate, agency, dest;
+    std::string paymentDate, departureDate, agency, dest;
     double payment;
-    char gender;
 
   public:
     Customer() = default;
@@ -70,6 +69,7 @@ class Customer {
     friend std::ostream& operator<<(std::ostream& in, Customer const& rhs);
     friend std::istream& operator>>(std::istream& out, Customer& rhs);
 
+    // TODO: move these functions to a Display class
     /**
      * Display formated customer information
      */
@@ -79,27 +79,17 @@ class Customer {
      */
     void edit();
 
-    void setIc(long ic);
-    void setAge(int age);
-    void setName(std::string name);
-    void setContactNum(std::string contactNum);
     void setPaymentDate(std::string paymentDate);
     void setDepartureDate(std::string departureDate);
     void setAgency(std::string agency);
     void setDest(std::string dest);
     void setPayment(double payment);
-    void setGender(char gender);
 
-    long getIc() const;
-    int getAge() const;
-    std::string getName() const;
-    std::string getContactNum() const;
     std::string getPaymentDate() const;
     std::string getDepartureDate() const;
     std::string getAgency() const;
     std::string getDest() const;
     double getPayment() const;
-    char getGender() const;
 };
 
 Customer::Customer(long ic, std::string name, char gender, int age,
@@ -107,8 +97,7 @@ Customer::Customer(long ic, std::string name, char gender, int age,
                    double payment, std::string paymentDate,
                    std::string departureDate,
                    std::string agency, std::string dest)
-  : ic{ic}, name{name}, gender{gender}, age{age},
-    contactNum{contactNum},
+  : Person{ic, name, gender, age, contactNum},
     payment{payment}, paymentDate{paymentDate},
     departureDate{departureDate},
     agency{agency}, dest{dest}
@@ -350,22 +339,6 @@ void Customer::edit()
   setDepartureDate(departureDate);
 }
 
-void Customer::setIc(long ic)
-{
-  this->ic = ic;
-}
-void Customer::setAge(int age)
-{
-  this->age = age;
-}
-void Customer::setName(std::string name)
-{
-  this->name = name;
-}
-void Customer::setContactNum(std::string contactNum)
-{
-  this->contactNum = contactNum;
-}
 void Customer::setPaymentDate(std::string paymentDate)
 {
   this->paymentDate = paymentDate;
@@ -386,27 +359,7 @@ void Customer::setPayment(double payment)
 {
   this->payment = payment;
 }
-void Customer::setGender(char gender)
-{
-  this->gender = gender;
-}
 
-long Customer::getIc() const
-{
-  return ic;
-}
-int Customer::getAge() const
-{
-  return age;
-}
-std::string Customer::getName() const
-{
-  return name;
-}
-std::string Customer::getContactNum() const
-{
-  return contactNum;
-}
 std::string Customer::getDepartureDate() const
 {
   return departureDate;
@@ -426,8 +379,4 @@ std::string Customer::getDest() const
 double Customer::getPayment() const
 {
   return payment;
-}
-char Customer::getGender() const
-{
-  return gender;
 }
