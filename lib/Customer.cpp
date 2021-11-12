@@ -314,8 +314,15 @@ void Customer::edit()
   }
 
   std::cin.ignore();
-  std::cout << "Destination          : ";
-  std::getline(std::cin, dest);
+  while (true ) {
+    std::regex pattern{"^[A-za-z\\s,]+$"};
+    std::cout << "Destination          : ";
+    std::getline(std::cin, dest);
+
+    if (!std::regex_match(dest, pattern)) {
+      std::cerr << "Destination's name should not contain numbers and special characters except ','!" << std::endl;
+    } else break;
+  }
 
   while (true) {
     unsigned int date, month, year;
