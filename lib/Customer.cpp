@@ -226,7 +226,7 @@ void Customer::edit()
     std::getline(std::cin, name);
 
     if (!std::regex_match(name, pattern)) {
-      std::cerr << "Real name should not contain numbers!" << std::endl;
+      std::cerr << "Real name should not contain numbers and special characters!" << std::endl;
     } else break;
   }
 
@@ -273,7 +273,7 @@ void Customer::edit()
     std::cin >> contactNum;
 
     if (!(std::regex_match(contactNum, pattern1)) && !(std::regex_match(contactNum, pattern2))) {
-      std::cerr << "Contact number should be in the format of 01X-XXXXXXX" << std::endl;
+      std::cerr << "Contact number should be in the format of 01X-XXXXXXX!" << std::endl;
     } else break;
   }
 
@@ -284,7 +284,7 @@ void Customer::edit()
     std::getline(std::cin, agency);
 
     if (!std::regex_match(agency, pattern)) {
-      std::cerr << "Agent's real name should not contain numbers!" << std::endl;
+      std::cerr << "Agent's real name should not contain numbers and special characters!" << std::endl;
     } else break;
   }
 
@@ -304,7 +304,7 @@ void Customer::edit()
 
     std::cout << "Payment Date         : ";
     if (std::scanf("%2d/%2d/%4d", &date, &month, &year) < 3) {
-      std::cerr << "Date should be in format dd/mm/yyyy" << std::endl;
+      std::cerr << "Date should be in format dd/mm/yyyy!" << std::endl;
       std::cin.clear();
       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } else {
@@ -329,7 +329,7 @@ void Customer::edit()
 
     std::cout << "Departure Date       : ";
     if (std::scanf("%2d/%2d/%4d", &date, &month, &year) < 3) {
-      std::cerr << "Date should be in format dd/mm/yyyy" << std::endl;
+      std::cerr << "Date should be in format dd/mm/yyyy!" << std::endl;
       std::cin.clear();
       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } else {
