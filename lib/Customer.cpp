@@ -221,10 +221,11 @@ void Customer::edit()
 
   std::cin.ignore();
   while (true) {
+    std::regex pattern{"^[A-za-z\\s]+$"};
     std::cout << "Name                 : ";
     std::getline(std::cin, name);
 
-    if (std::string::npos != name.find_first_of("0123456789")) {
+    if (!std::regex_match(name, pattern)) {
       std::cerr << "Real name should not contain numbers!" << std::endl;
     } else break;
   }
@@ -279,10 +280,11 @@ void Customer::edit()
 
   std::cin.ignore();
   while (true) {
+    std::regex pattern{"^[A-za-z\\s]+$"};
     std::cout << "Responsible Agency   : ";
     std::getline(std::cin, agency);
 
-    if (std::string::npos != agency.find_first_of("0123456789")) {
+    if (!std::regex_match(agency, pattern)) {
       std::cerr << "Agent's real name should not contain numbers!" << std::endl;
     } else break;
   }
