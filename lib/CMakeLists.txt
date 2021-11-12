@@ -8,5 +8,7 @@ function(includeUserLib libName libFile)
   install(FILES ${libFile} DESTINATION include)
 endfunction()
 
+includeUserLib(person Person.cpp)
 includeUserLib(customer Customer.cpp)
+includeUserLib(agent Agent.cpp)
 includeUserLib(linkedlist LinkedList.cpp)
