@@ -4,9 +4,13 @@
  *
  * @class Customer Customer.cpp "Customer.cpp"
  */
-#include <iostream>
-#include <string>
+
 #include <Person.cpp>
+#include <cstdio>
+#include <iostream>
+#include <limits>
+#include <string>
+#include <regex>
 
 /**
  * Simple storage for customer information
@@ -205,28 +209,123 @@ void Customer::edit()
   char gender;
 
   std::cin.ignore();
-  std::cout << "Name                 : ";
-  std::getline(std::cin, name);
-  std::cout << "IC                   : ";
-  std::cin >> ic;
-  std::cout << "Gender               : ";
-  std::cin >> gender;
-  std::cout << "Age                  : ";
-  std::cin >> age;
-  std::cout << "Contact Number       : ";
-  std::cin >> contactNum;
+  while (true) {
+    std::regex pattern{"^[A-za-z\\s]+$"};
+    std::cout << "Name                 : ";
+    std::getline(std::cin, name);
+
+    if (!std::regex_match(name, pattern)) {
+      std::cerr << "Real name should not contain numbers and special characters!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "IC                   : ";
+    std::cin >> ic;
+
+    if (!std::cin) {
+      std::cerr << "IC should be in digits!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "Gender               : ";
+    std::cin >> gender;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    if (isdigit(gender)) {
+      std::cerr << "Gender could not be a number!" << std::endl;
+    } else if (std::tolower(gender) != 'm' && std::tolower(gender) != 'f' && std::tolower(gender) != 'n') {
+      std::cerr << "Gender can only be either (M)ale, (F)emale or (N)on-binary!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "Age                  : ";
+    std::cin >> age;
+
+    if (!std::cin) {
+      std::cerr << "Age should be in number!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else break;
+  }
+
+  while (true) {
+    std::regex pattern1{"01[0,2-9]-[0-9]{7}"};
+    std::regex pattern2{"011-[0-9]{8}"};
+
+    std::cout << "Contact Number       : ";
+    std::cin >> contactNum;
+
+    if (!(std::regex_match(contactNum, pattern1)) && !(std::regex_match(contactNum, pattern2))) {
+      std::cerr << "Contact number should be in the format of 01X-XXXXXXX!" << std::endl;
+    } else break;
+  }
+
   std::cin.ignore();
-  std::cout << "Responsible Agency   : ";
-  std::getline(std::cin, agency);
-  std::cout << "Payment              : ";
-  std::cin >> payment;
-  std::cout << "Payment Date         : ";
-  std::cin >> paymentDate;
+  while (true) {
+    std::regex pattern{"^[A-za-z\\s]+$"};
+    std::cout << "Responsible Agency   : ";
+    std::getline(std::cin, agency);
+
+    if (!std::regex_match(agency, pattern)) {
+      std::cerr << "Agent's real name should not contain numbers and special characters!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    std::cout << "Payment              : ";
+    std::cin >> payment;
+
+    if (!std::cin) {
+      std::cerr << "Payment should be in digits!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else break;
+  }
+
+  while (true) {
+    unsigned int date, month, year;
+
+    std::cout << "Payment Date         : ";
+    if (std::scanf("%2d/%2d/%4d", &date, &month, &year) < 3) {
+      std::cerr << "Date should be in format dd/mm/yyyy!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else {
+      paymentDate = std::to_string(date) + '/' + std::to_string(month) + '/' + std::to_string(year);
+      break;
+    }
+  }
+
   std::cin.ignore();
-  std::cout << "Destination          : ";
-  std::getline(std::cin, dest);
-  std::cout << "Departure Date       : ";
-  std::cin >> departureDate;
+  while (true ) {
+    std::regex pattern{"^[A-za-z\\s,]+$"};
+    std::cout << "Destination          : ";
+    std::getline(std::cin, dest);
+
+    if (!std::regex_match(dest, pattern)) {
+      std::cerr << "Destination's name should not contain numbers and special characters except ','!" << std::endl;
+    } else break;
+  }
+
+  while (true) {
+    unsigned int date, month, year;
+
+    std::cout << "Departure Date       : ";
+    if (std::scanf("%2d/%2d/%4d", &date, &month, &year) < 3) {
+      std::cerr << "Date should be in format dd/mm/yyyy!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } else {
+      departureDate = std::to_string(date) + '/' + std::to_string(month) + '/' + std::to_string(year);
+      break;
+    }
+  }
 
   setName(name);
   setIc(ic);
