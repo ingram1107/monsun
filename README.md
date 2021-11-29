@@ -4,7 +4,8 @@ A travelling agent system implemented in C++14.
 # Requirements
 - CMake (>= 3.14)
 - Make
-- Any compiler that support C++14
+- Any compiler that support C++17
+- GTK4 and gtkmm
 - Google Test (optional)
 
 # Supported Platforms
