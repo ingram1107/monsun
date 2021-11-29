@@ -29,3 +29,12 @@ Follow the CMake GUI instructions
 ```sh
 sudo make uninstall
 ```
+
+# To Run
+## Windows
+Find the application named `monsun` from your menu
+
+## Linux and MacOS
+```sh
+monsun
+```
