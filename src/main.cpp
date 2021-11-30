@@ -5,7 +5,7 @@
 #ifdef ENABLE_TUI
 #include "tui.cpp"
 #elif defined(ENABLE_GUI)
-#include "gtk-gui.cpp"
+#include "gtk-gui/mainw.cpp"
 #include <gtkmm/application.h>
 #endif
 
