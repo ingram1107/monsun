@@ -13,7 +13,7 @@
 #include <regex>
 
 /**
- * Simple storage for customer information
+ * A simple storage for customer information
  */
 class Customer : public Person {
   private:
@@ -58,16 +58,70 @@ class Customer : public Person {
      * Determine whether two of the Customer objects are not belong to the same
      * customer
      *
+     * @param rhs Customer object at the right hand side
      * @retval true If this Customer object and the right hand side Customer
      *    object are not the same
      * @retval false If this Customer object and the right hand side Customer
      *    object are the same
      */
     bool operator!=(const Customer& rhs);
+    /**
+     * Determine whether this customer has less priority than the right hand
+     * side customer
+     *
+     * @param rhs Customer object at the right hand side
+     * @retval true If this Customer object has less priority than the right
+     *    hand side Customer object
+     * @retval false If this Customer object does not have less priority than
+     *    the right hand side Customer object
+     */
     bool operator<(const Customer& rhs);
+    /**
+     * Determine whether this customer has more priority than the right hand
+     * side customer
+     *
+     * @param rhs Customer object at the right hand side
+     * @retval true If this Customer object has more priority than the right
+     *    hand side Customer object
+     * @retval false If this Customer object does not have more priority than
+     *    the right hand side Customer object
+     */
     bool operator>(const Customer& rhs);
-    friend std::ostream& operator<<(std::ostream& in, Customer const& rhs);
-    friend std::istream& operator>>(std::istream& out, Customer& rhs);
+    /**
+     * Output the Customer object as a structured data to the output stream
+     *
+     * This function will output the Customer object in the format of
+     * "Name:IC:Gender:Age:ContactNum:Payment:PaymentDate:Agency:Destination:DepartureDate:".
+     * It can be called as follow:
+     *
+     * @code{.cpp}
+     * Customer rhs{...};
+     * std::cout << rhs;
+     * @endcode
+     *
+     * @param out output stream such as standard output and file
+     * @param rhs Customer object at the right hand side
+     * @returns an output stream object
+     **/
+    friend std::ostream& operator<<(std::ostream& out, Customer const& rhs);
+    /**
+     * Receive structured data from the input stream and convert it into the
+     * Customer object
+     *
+     * This function will convert the structured data from the input stream
+     * into their corresponding data type and stored them into the Customer
+     * object specified. It can be called as follow:
+     *
+     * @code{.cpp}
+     * Customer rhs{};
+     * std::cin >> rhs;
+     * @endcode
+     *
+     * @param in input stream such as standard input and file
+     * @param rhs Customer object at the right hand side
+     * @returns an input stream object
+     **/
+    friend std::istream& operator>>(std::istream& in, Customer& rhs);
 
     // TODO: move these functions to a Display class
     /**

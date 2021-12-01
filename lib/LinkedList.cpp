@@ -71,7 +71,6 @@ struct Node {
 template <class T>
 class LinkedList {
   private:
-    /// Size of the LinkedList
     /// Header of the LinkedList
     std::shared_ptr<Node<T>> head = nullptr;
     /**
@@ -89,6 +88,7 @@ class LinkedList {
     void descendingOrderSort();
 
   public:
+    /// Size of the LinkedList
     size_t size = 0;
 
     LinkedList() = default;
@@ -247,10 +247,20 @@ class LinkedList {
      */
     bool remove(size_t index);
     /**
-     * Sort the LinkedList using <sorting algorithm implementation> in <order>
+     * Sort the LinkedList using bubble sort in either ascending or descending
+     * order
      *
-     * @todo To review whether this should be decoupled from the LinkedList or
-     *    not
+     * This function will sort the LinkedList accords to what user desired. If
+     * the value of isAscending is true, then it will run ascendingOrderSort
+     * under the hook. Otherwise, descendingOrderSort will be used to sort the
+     * items in the LinkedList.
+     *
+     * @param isAscending Boolean option to sort the list in ascending order
+     * @attention All objects that wise to be sorted should implement operator<
+     *    and operator>
+     * @see void ascendingOrderSort()
+     * @see void descendingOrderSort()
+     * @see https://en.wikipedia.org/wiki/Bubble_sort
      */
     void sort(bool isAscending);
 };
