@@ -53,6 +53,10 @@ MainWindow::MainWindow()
   m_editCustomer_button.signal_clicked().connect(sigc::mem_fun(*this,
         &MainWindow::on_m_editCustomer_button_clicked));
   m_editCustomer_button.set_margin(10);
+  m_deleteCustomer_button.set_margin(10);
+  m_displayCustomer_button.set_margin(10);
+  m_searchCustomer_button.set_margin(10);
+  m_sortCustomer_button.set_margin(10);
 }
 
 MainWindow::~MainWindow()
