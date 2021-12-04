@@ -5,11 +5,13 @@
 #ifdef ENABLE_TUI
 #include "tui.cpp"
 #elif defined(ENABLE_GUI)
+#include "gtk-gui/mainw.cpp"
+#include <gtkmm/application.h>
 #endif
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
 #ifdef ENABLE_TUI
   std::ifstream finCustomer{"customer.dat", std::ios::in};
@@ -146,5 +148,9 @@ menu:
   }
 
   return 0;
+#elif defined (ENABLE_GUI)
+  auto app = Gtk::Application::create("org.gtkmm.example");
+
+  return app->make_window_and_run<MainWindow>(argc, argv);
 #endif
 }

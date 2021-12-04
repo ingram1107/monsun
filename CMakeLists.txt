@@ -4,7 +4,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(monsun VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Werror")
 
 find_package(Doxygen)
@@ -34,6 +34,19 @@ endif()
 
 configure_file(monsun.h.in monsun.h)
 
+if(ENABLE_TUI)
+  message("Compile Monsun with TUI")
+elseif(ENABLE_GUI)
+  message("Compile Monsun with GUI")
+  find_package(PkgConfig)
+  pkg_check_modules(GTKMM gtkmm-4.0)
+  list(APPEND EXTRA_LINKS ${GTKMM_LIBRARY_DIRS})
+  list(APPEND EXTRA_INCLUDES ${GTKMM_INCLUDE_DIRS})
+  list(APPEND EXTRA_LIBS ${GTKMM_LIBRARIES})
+else()
+  message("Compile Monsun wiht no interface")
+endif()
+
 add_executable(${PROJECT_NAME} src/main.cpp)
 add_subdirectory(lib)
 
@@ -56,27 +69,25 @@ endif()
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     ${PROJECT_BINARY_DIR}
-)
-
-target_include_directories(${PROJECT_NAME}
-  PUBLIC
     lib
+  PRIVATE
+    ${EXTRA_INCLUDES}
 )
 
 target_link_directories(${PROJECT_NAME}
-  PRIVATE
+  PUBLIC
     lib
+  PRIVATE
+    ${EXTRA_LINKS}
 )
 
-target_link_libraries(${PROJECT_NAME} customer linkedlist)
-
-if(ENABLE_TUI)
-  message("Compile Monsun with TUI")
-elseif(ENABLE_GUI)
-  message("Compile Monsun with GUI")
-else()
-  message("Compile Monsun wiht no interface")
-endif()
+target_link_libraries(${PROJECT_NAME} 
+  PUBLIC
+    customer
+    linkedlist
+  PRIVATE
+    ${EXTRA_LIBS}
+)
 
 # cmake --install
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
