@@ -13,83 +13,83 @@ class AddCustomerWindow : public Gtk::Window {
 
   protected:
     // Signal handlers
-    void on_button_saved();
+    void onButtonSaved();
 
     // Child widgets
-    Gtk::Box m_VBox_Main, m_HBox_Name, m_HBox_IC, m_HBox_Gender, m_HBox_Age,
-      m_HBox_ContactNum, m_HBox_Agency, m_HBox_Payment, m_HBox_PaymentDate,
-      m_HBox_Dest, m_HBox_DepartureDate;
+    Gtk::Box mainVBox, nameHBox, icHBox, genderHBox, ageHBox,
+      contactNumHBox, agencyHBox, paymentHBox, paymentDateHBox,
+      destHBox, departureDateHBox;
 
-    Gtk::Entry m_Name, m_IC, m_Gender, m_Age, m_ContactNum, m_Agency,
-      m_Payment, m_Dest;
+    Gtk::Entry name, ic, gender, age, contactNum, agency,
+      payment, dest;
 
-    Gtk::Calendar m_PaymentDate, m_DepartureDate;
+    Gtk::Calendar paymentDate, departureDate;
 
-    Gtk::Button m_Save;
+    Gtk::Button saveButton;
 };
 
 AddCustomerWindow::AddCustomerWindow()
-  : m_VBox_Main(Gtk::Orientation::VERTICAL, 0),
-    m_HBox_Name(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_IC(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_Gender(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_Age(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_ContactNum(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_Agency(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_Payment(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_PaymentDate(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_Dest(Gtk::Orientation::HORIZONTAL, 10),
-    m_HBox_DepartureDate(Gtk::Orientation::HORIZONTAL, 10),
-    m_Save("Save")
+  : mainVBox(Gtk::Orientation::VERTICAL, 0),
+    nameHBox(Gtk::Orientation::HORIZONTAL, 10),
+    icHBox(Gtk::Orientation::HORIZONTAL, 10),
+    genderHBox(Gtk::Orientation::HORIZONTAL, 10),
+    ageHBox(Gtk::Orientation::HORIZONTAL, 10),
+    contactNumHBox(Gtk::Orientation::HORIZONTAL, 10),
+    agencyHBox(Gtk::Orientation::HORIZONTAL, 10),
+    paymentHBox(Gtk::Orientation::HORIZONTAL, 10),
+    paymentDateHBox(Gtk::Orientation::HORIZONTAL, 10),
+    destHBox(Gtk::Orientation::HORIZONTAL, 10),
+    departureDateHBox(Gtk::Orientation::HORIZONTAL, 10),
+    saveButton("Save")
 {
   set_title("Adding Customer");
-  set_child(m_VBox_Main);
+  set_child(mainVBox);
 
-  m_VBox_Main.append(m_HBox_Name);
-  m_VBox_Main.append(m_HBox_IC);
-  m_VBox_Main.append(m_HBox_Gender);
-  m_VBox_Main.append(m_HBox_Age);
-  m_VBox_Main.append(m_HBox_ContactNum);
-  m_VBox_Main.append(m_HBox_Agency);
-  m_VBox_Main.append(m_HBox_Payment);
-  m_VBox_Main.append(m_HBox_PaymentDate);
-  m_VBox_Main.append(m_HBox_Dest);
-  m_VBox_Main.append(m_HBox_DepartureDate);
+  mainVBox.append(nameHBox);
+  mainVBox.append(icHBox);
+  mainVBox.append(genderHBox);
+  mainVBox.append(ageHBox);
+  mainVBox.append(contactNumHBox);
+  mainVBox.append(agencyHBox);
+  mainVBox.append(paymentHBox);
+  mainVBox.append(paymentDateHBox);
+  mainVBox.append(destHBox);
+  mainVBox.append(departureDateHBox);
 
-  m_HBox_Name.append(*Gtk::make_managed<Gtk::Label>("Name: ", 0));
-  m_HBox_Name.append(m_Name);
+  nameHBox.append(*Gtk::make_managed<Gtk::Label>("Name: ", 0));
+  nameHBox.append(name);
 
-  m_HBox_IC.append(*Gtk::make_managed<Gtk::Label>("IC: ", 0));
-  m_HBox_IC.append(m_IC);
+  icHBox.append(*Gtk::make_managed<Gtk::Label>("IC: ", 0));
+  icHBox.append(ic);
 
-  m_HBox_Gender.append(*Gtk::make_managed<Gtk::Label>("Gender: ", 0));
-  m_HBox_Gender.append(m_Gender);
+  genderHBox.append(*Gtk::make_managed<Gtk::Label>("Gender: ", 0));
+  genderHBox.append(gender);
 
-  m_HBox_Age.append(*Gtk::make_managed<Gtk::Label>("Age: ", 0));
-  m_HBox_Age.append(m_Age);
+  ageHBox.append(*Gtk::make_managed<Gtk::Label>("Age: ", 0));
+  ageHBox.append(age);
 
-  m_HBox_ContactNum.append(*Gtk::make_managed<Gtk::Label>("Contact Number: ", 0));
-  m_HBox_ContactNum.append(m_ContactNum);
+  contactNumHBox.append(*Gtk::make_managed<Gtk::Label>("Contact Number: ", 0));
+  contactNumHBox.append(contactNum);
 
-  m_HBox_Agency.append(*Gtk::make_managed<Gtk::Label>("Agency: ", 0));
-  m_HBox_Agency.append(m_Agency);
+  agencyHBox.append(*Gtk::make_managed<Gtk::Label>("Agency: ", 0));
+  agencyHBox.append(agency);
 
-  m_HBox_Payment.append(*Gtk::make_managed<Gtk::Label>("Payment: ", 0));
-  m_HBox_Payment.append(m_Payment);
+  paymentHBox.append(*Gtk::make_managed<Gtk::Label>("Payment: ", 0));
+  paymentHBox.append(payment);
 
-  m_HBox_PaymentDate.append(*Gtk::make_managed<Gtk::Label>("Payment Date: ", 0));
-  m_HBox_PaymentDate.append(m_PaymentDate);
+  paymentDateHBox.append(*Gtk::make_managed<Gtk::Label>("Payment Date: ", 0));
+  paymentDateHBox.append(paymentDate);
 
-  m_HBox_Dest.append(*Gtk::make_managed<Gtk::Label>("Destination: ", 0));
-  m_HBox_Dest.append(m_Dest);
+  destHBox.append(*Gtk::make_managed<Gtk::Label>("Destination: ", 0));
+  destHBox.append(dest);
 
-  m_HBox_DepartureDate.append(*Gtk::make_managed<Gtk::Label>("Departure Date: ", 0));
-  m_HBox_DepartureDate.append(m_DepartureDate);
+  departureDateHBox.append(*Gtk::make_managed<Gtk::Label>("Departure Date: ", 0));
+  departureDateHBox.append(departureDate);
 
-  m_VBox_Main.append(m_Save);
-  m_Save.signal_clicked().connect(sigc::mem_fun(*this,
-        &AddCustomerWindow::on_button_saved));
-  m_Save.set_margin(10);
+  mainVBox.append(saveButton);
+  saveButton.signal_clicked().connect(sigc::mem_fun(*this,
+        &AddCustomerWindow::onButtonSaved));
+  saveButton.set_margin(10);
 }
 
 AddCustomerWindow::~AddCustomerWindow()
@@ -97,7 +97,7 @@ AddCustomerWindow::~AddCustomerWindow()
 
 }
 
-void AddCustomerWindow::on_button_saved()
+void AddCustomerWindow::onButtonSaved()
 {
   hide();
 }

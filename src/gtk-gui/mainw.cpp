@@ -13,50 +13,50 @@ class MainWindow : public Gtk::ApplicationWindow {
 
   protected:
     // Signal Handlers
-    void on_m_addCustomer_button_clicked();
-    void on_m_editCustomer_button_clicked();
-    void on_m_deleteCustomer_button_clicked();
-    void on_m_displayCustomer_button_clicked();
-    void on_m_searchCustomer_button_clicked();
-    void on_m_sortCustomer_button_clicked();
+    void onAddCustomerButtonClicked();
+    void onEditCustomerButtonClicked();
+    void onDeleteCustomerButtonClicked();
+    void onDisplayCustomerButtonClicked();
+    void onSearchCustomerButtonClicked();
+    void onSortCustomerButtonClicked();
 
     // Chlid Widgets
-    Gtk::Grid m_grid;
-    Gtk::Button m_addCustomer_button, m_editCustomer_button,
-      m_deleteCustomer_button, m_displayCustomer_button,
-      m_searchCustomer_button, m_sortCustomer_button;
+    Gtk::Grid grid;
+    Gtk::Button addCustomerButton, editCustomerButton,
+      deleteCustomerButton, displayCustomerButton,
+      searchCustomerButton, sortCustomerButton;
 };
 
 MainWindow::MainWindow()
-  : m_addCustomer_button("Add Customer's Information"),
-    m_editCustomer_button("Edit Customer's Information"),
-    m_deleteCustomer_button("Delete Customer's Information"),
-    m_displayCustomer_button("Display Customer's Information"),
-    m_searchCustomer_button("Search Customer's Information"),
-    m_sortCustomer_button("Sort Customer's Information")
+  : addCustomerButton("Add Customer's Information"),
+    editCustomerButton("Edit Customer's Information"),
+    deleteCustomerButton("Delete Customer's Information"),
+    displayCustomerButton("Display Customer's Information"),
+    searchCustomerButton("Search Customer's Information"),
+    sortCustomerButton("Sort Customer's Information")
 {
   set_title("Monsun");
 
-  m_grid.set_margin(12);
-  set_child(m_grid);
+  grid.set_margin(12);
+  set_child(grid);
 
-  m_grid.attach(m_addCustomer_button, 0, 0);
-  m_grid.attach(m_editCustomer_button, 1, 0);
-  m_grid.attach(m_deleteCustomer_button, 0, 1);
-  m_grid.attach(m_displayCustomer_button, 1, 1);
-  m_grid.attach(m_searchCustomer_button, 0, 2);
-  m_grid.attach(m_sortCustomer_button, 1, 2);
+  grid.attach(addCustomerButton, 0, 0);
+  grid.attach(editCustomerButton, 1, 0);
+  grid.attach(deleteCustomerButton, 0, 1);
+  grid.attach(displayCustomerButton, 1, 1);
+  grid.attach(searchCustomerButton, 0, 2);
+  grid.attach(sortCustomerButton, 1, 2);
 
-  m_addCustomer_button.signal_clicked().connect(sigc::mem_fun(*this,
-        &MainWindow::on_m_addCustomer_button_clicked));
-  m_addCustomer_button.set_margin(10);
-  m_editCustomer_button.signal_clicked().connect(sigc::mem_fun(*this,
-        &MainWindow::on_m_editCustomer_button_clicked));
-  m_editCustomer_button.set_margin(10);
-  m_deleteCustomer_button.set_margin(10);
-  m_displayCustomer_button.set_margin(10);
-  m_searchCustomer_button.set_margin(10);
-  m_sortCustomer_button.set_margin(10);
+  addCustomerButton.signal_clicked().connect(sigc::mem_fun(*this,
+        &MainWindow::onAddCustomerButtonClicked));
+  addCustomerButton.set_margin(10);
+  editCustomerButton.signal_clicked().connect(sigc::mem_fun(*this,
+        &MainWindow::onEditCustomerButtonClicked));
+  editCustomerButton.set_margin(10);
+  deleteCustomerButton.set_margin(10);
+  displayCustomerButton.set_margin(10);
+  searchCustomerButton.set_margin(10);
+  sortCustomerButton.set_margin(10);
 }
 
 MainWindow::~MainWindow()
@@ -64,34 +64,34 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::on_m_addCustomer_button_clicked()
+void MainWindow::onAddCustomerButtonClicked()
 {
   auto nw = new AddCustomerWindow();
   nw->show();
 }
 
-void MainWindow::on_m_editCustomer_button_clicked()
+void MainWindow::onEditCustomerButtonClicked()
 {
   auto nw = new EditCustomerWindow();
   nw->show();
 }
 
-void MainWindow::on_m_deleteCustomer_button_clicked()
+void MainWindow::onDeleteCustomerButtonClicked()
 {
 
 }
 
-void MainWindow::on_m_displayCustomer_button_clicked()
+void MainWindow::onDisplayCustomerButtonClicked()
 {
 
 }
 
-void MainWindow::on_m_searchCustomer_button_clicked()
+void MainWindow::onSearchCustomerButtonClicked()
 {
 
 }
 
-void MainWindow::on_m_sortCustomer_button_clicked()
+void MainWindow::onSortCustomerButtonClicked()
 {
 
 }
