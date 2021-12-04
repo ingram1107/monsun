@@ -3,6 +3,7 @@
 #include <gtkmm/entry.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
+#include <gtkmm/calendar.h>
 #include <sigc++/functors/mem_fun.h>
 
 class EditCustomerWindow : public Gtk::Window {
@@ -20,7 +21,9 @@ class EditCustomerWindow : public Gtk::Window {
       m_HBox_Dest, m_HBox_DepartureDate;
 
     Gtk::Entry m_Name, m_IC, m_Gender, m_Age, m_ContactNum, m_Agency,
-      m_Payment, m_PaymentDate, m_Dest, m_DepartureDate;
+      m_Payment, m_Dest;
+
+    Gtk::Calendar m_PaymentDate, m_DepartureDate;
 
     Gtk::Button m_Save;
 };
